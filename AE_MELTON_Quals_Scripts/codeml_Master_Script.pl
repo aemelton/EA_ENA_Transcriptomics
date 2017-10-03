@@ -5,16 +5,16 @@
 #unnecessary files. Paths to scripts will need to be edited for the users system. 
 
 #This command calls on the codeml_pipe script, which will prepare the data for analysis
-system("/codeml_pipe.sh") == 0
+system("Scripts/codeml_pipe.sh") == 0
     or die "Script failed";
 
 #This command will call on the codeml_ctl_maker script to generate ctl files for all
 #alignment files in the folder
-system("/scratch/lfs/aemelton/Scripts/codeml_ctl_maker.pl") == 0
+system("Scripts/codeml_ctl_maker.pl") == 0
     or die "Script failed";
 
 #This will call on the job submission script
-system("/scratch/lfs/aemelton/Scripts/Submit_codeml.pl") == 0
+system("Scripts/Submit_codeml.pl") == 0
     or die "Script failed";
 
 #Due to the time involved in submission of jobs, this command is used to allow that section
@@ -22,7 +22,7 @@ system("/scratch/lfs/aemelton/Scripts/Submit_codeml.pl") == 0
 system("sleep 300");
 
 #This will call on the Get_Results script and produce a csv file with relevant results
-system("/scratch/lfs/aemelton/Scripts/CODEML_PIPE/Get_Results.pl") == 0
+system("Scripts/CODEML_PIPE/Get_Results.pl") == 0
     or die "Script failed";
 
 #The following commands are to clean up the directory after running the analyses and 
@@ -39,3 +39,4 @@ system("mkdir SequenceFiles");
 system("cp *_all.fna.fna SequenceFiles/.");
 
 system("rm *");
+
