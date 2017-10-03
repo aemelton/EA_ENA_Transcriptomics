@@ -7,7 +7,8 @@
 # Usage: perl Fasta2Phylip.pl inputFastaFile outputPhilipFile
 
 #This script was modified by Anthony E. Melton to change the output to be accepted
-#by the programs in the PAML package.
+#by the programs in the PAML package. PAML will only accept files with a tab delimiting
+#the name and the sequence see "print OUT "$seqName  $seq\n"" versus "$seqName\t$seq\n"
 ######################################################################################
 use strict;
 
