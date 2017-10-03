@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 #This script will take the fasta output from MarkerMiner and extract all Open-Reading 
-#Frames (ORFs), then they will be aligned by Muscle, and the resulting output will be
-#converted into a format readable by PAML programs. This pipeline was developed in a 
-#system which requires program modules to be loaded to your personal workspace, and
+#Frames (ORFs;-minsize can be edited to users needs, as well as other components of the 
+#commands in this script), then they will be aligned by Muscle, and the resulting output 
+#will be converted into a format readable by PAML programs. This pipeline was developed 
+#in a system which requires program modules to be loaded to your personal workspace, and
 #includes the required "module load" commands - these can be removed in environments in 
-#which they are not required.
+#which they are not required. 
 
 ###Load required modules
 module load emboss
@@ -29,7 +30,7 @@ for i in ./*.fna
 ####programs
 for i in ./*.fna
         
-        do perl /home/aemelton/Scripts/fasta2phylip.pl  "$i"_aln.fasta "$i".phy
+        do perl fasta2phylip.pl  "$i"_aln.fasta "$i".phy
 
         done
 
