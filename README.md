@@ -19,6 +19,14 @@ package to run the scripts to completion. Once all the requirements are met, all
 perl codeml_Master_script.pl) and voila! The pipeline should be up-and-running. In the end, you will be left with a folder for 
 output files, a folder for the sequence files, and all intermediate files should be removed.
 
+Pairwise v Phylogenetic:
+  Codeml can conduct dN/dS analyses in both a pairwise fashion (comparing just two sequences) or estimate over a phylogeny when
+given a topology. This package of scripts contains scripts for both types of analyses. Some parts of the pipeline are universal
+(codeml_pipe.sh, submit_codeml.pl, submit_with_slurm.pl), though some are specific to one or the other (codeml_ctl_maker.pl is
+for pairwise comparisons, and codeml_ctl_maker_with_phylo.pl is for generating ctl files for analyses with phylogenies [though,
+these scripts are very similar in form], and the "Get_Results" scripts). The Master script will be downloaded with code for
+the pairwise comparisons, but it can be easily modified to run analyses with dN/dS estimation over phylogenies.   
+
 Literature cited:
 Chamala, S., García, N., Godden, G. T., Krishnakumar, V., Jordon-Thaden, I. E., De Smet, R., Barbazuk, W. B., Soltis, D. E., 
   and Soltis, P. S. 2015. MarkerMiner 1.0: A new application for phylogenetic marker development using angiosperm 
