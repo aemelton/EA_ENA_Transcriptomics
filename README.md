@@ -15,9 +15,16 @@ the user if this is the case). Change your working directory to the fasta folder
 call on the master script. But, before running the script, there are several requirements to meet first: 1) make sure the paths
 in the scripts are appropriate for your directory arrangement, 2) make sure that file extensions are standardized in your 
 directories and in any edits you make to the scripts, 3) you must have the EMBOSS suite for GetOrf, muscle, and the PAML 
-package to run the scripts to completion. Once all the requirements are met, all you have to do is run the master script (e.g.,
-perl codeml_Master_script.pl) and voila! The pipeline should be up-and-running. In the end, you will be left with a folder for 
-output files, a folder for the sequence files, and all intermediate files should be removed.
+package to run the scripts to completion, and 4) determine whether the pairwise or phylogenetic components (SEE BELOW) are 
+most appropriate for you and edit scripts as needed. Once all the requirements are met, all you have to do is run the master 
+script (e.g., perl codeml_Master_script.pl) or run make (with the makefile in the working directory; SEE BELOW) and voila! The 
+pipeline should be up-and-running. In the end, you will be left with a folder for output files, a folder for the sequence files, 
+and all intermediate files should be removed.
+
+"Master" script versus makefile:
+  Both the master script and makefile will run all componenents of the pipeline automatically. When running the master script,
+it will automatically begin at the start of the pipeline and run all components. With the makefile, you will be able to skip
+components that have already been completed and are up-to-date and complete components of the pipeline that need to be completed.
 
 Pairwise v Phylogenetic:
   Codeml can conduct dN/dS analyses in both a pairwise fashion (comparing just two sequences) or estimate over a phylogeny when
