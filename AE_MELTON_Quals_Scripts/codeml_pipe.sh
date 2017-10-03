@@ -1,17 +1,24 @@
 #!/usr/bin/env bash
 
+#This script will take the fasta output from MarkerMiner and extract all Open-Reading 
+#Frames (ORFs), then they will be aligned by Muscle, and the resulting output will be
+#converted into a format readable by PAML programs. This pipeline was developed in a 
+#system which requires program modules to be loaded to your personal workspace, and
+#includes the required "module load" commands - these can be removed in environments in 
+#which they are not required.
+
 ###Load required modules
 module load emboss
 module load muscle
 
-#####This loop will extract ORFs from the fast files
+#####This loop will extract ORFs from the fasta files
 for i in ./*.fna
         
-      	do getorf -sequence $i -outseq "$i"_orf -minsize 700 -osformat2 fasta -find 3
+      	do getorf -sequence $i -outseq "$i"_orf -minsize 750 -osformat2 fasta -find 3
 
         done
 
-#####This loops will align the extracted ORFs
+#####This loop will align the extracted ORFs via muscle
 for i in ./*.fna
 
         do muscle -in "$i"_orf -out "$i"_aln.fasta
@@ -25,3 +32,4 @@ for i in ./*.fna
         do perl /home/aemelton/Scripts/fasta2phylip.pl  "$i"_aln.fasta "$i".phy
 
         done
+
