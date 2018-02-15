@@ -1,5 +1,12 @@
 #!/usr/bin/perl
 
+#This script is for use with a Slurm queue system. It will take the ctl files in the working
+#directory, generate a bash submission script, and submit it to the queue. The submission parameters
+#provided will need to be edited for the users needs (these parameters were used for the submission
+#of several hundred - thousands of analyses). The script generates a list of ctl files within
+#the working directory, parses the file name and extracts the gene ID, then prints out a submission
+#file with the gene ID in the file name (e.g., GENE_ID.out).
+
 use warnings;
 system 'ls *.ctl > CtlFiles';
 
