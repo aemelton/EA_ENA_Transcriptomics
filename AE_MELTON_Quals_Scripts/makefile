@@ -6,30 +6,29 @@ CC=gcc
 #process at the command of your choice. Each item is named after the script/function from which it is 
 #derived (e.g., CTL is produced via the codeml_ctl_maker.pl script).
 
-CLEANUP : RESULTS
-        system("mkdir OutPutFiles")\
+all : CLEANUP *out *sh *ctl *fasta #This will run everything.
 
-        system("cp *out OutPutFiles/.")\
+CLEANUP : *out
+	mkdir OutPutFiles\
 
-        system("cp Results.csv OutPutFiles/.")\
+	cp *out OutPutFiles/.\
 
-        system("mkdir SequenceFiles")\
+	cp Results.csv OutPutFiles/.\
 
-        system("cp *_all.fna.fna SequenceFiles/.")\
+	mkdir SequenceFiles\
 
-        system("rm *")
+	cp *_all.fna.fna SequenceFiles/.\
 
-RESULTS : SLEEP
-	perl Get_Results.pl
+	rm *
 
-SLEEP: SUB
-	system("sleep 300")
+*out : *sh /ufrc/soltis/aemelton/Scripts/CODEML_PIPE/Get_Results.pl
+	perl /ufrc/soltis/aemelton/Scripts/CODEML_PIPE/Get_Results.pl
 
-SUB : CTL
-	perl Submit_codeml.pl
+*sh : *ctl /ufrc/soltis/aemelton/Scripts/CODEML_PIPE/Submit_codeml.pl
+	perl /ufrc/soltis/aemelton/Scripts/CODEML_PIPE/Submit_codeml.pl && sleep 300
 
-CTL : PIPE
-	perl codeml_ctl_maker.pl
+*ctl : *fasta /ufrc/soltis/aemelton/Scripts/CODEML_PIPE/codeml_ctl_maker.pl
+	perl /ufrc/soltis/aemelton/Scripts/CODEML_PIPE/codeml_ctl_maker.pl
 
-PIPE : ./*fna
-	bash codeml_pipe.sh
+*fasta : *fna /ufrc/soltis/aemelton/Scripts/CODEML_PIPE/codeml_pipe.sh
+	bash /ufrc/soltis/aemelton/Scripts/CODEML_PIPE/codeml_pipe.sh
