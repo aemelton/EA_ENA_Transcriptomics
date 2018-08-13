@@ -1,6 +1,4 @@
-# Quals
-This is a repository for scripts that I am working on for a written qualification exam. These will be moved to another 
-repository upon completion and final edits.
+# dN/dS analyses of transcriptomic data
 
   This repository holds a series of scripts is intended to take the output of MarkerMiner (Chamala et al 2014) and format for 
 and run dN/dS analyses in codeml (PAML; Yang 1997). My goal was to make a pipeline that was simple, transportable, and would 
